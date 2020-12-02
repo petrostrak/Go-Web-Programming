@@ -1,28 +1,17 @@
 package main
 
 import (
-	"html/template"
 	"net/http"
 )
 
-func index(w http.ResponseWriter, r *http.Request) {
+func index(writer http.ResponseWriter, request *http.Request) {
 	threads, err := data.Threads()
 	if err == nil {
-		_, err := session(w, r)
-		publicTmplFiles := []string{
-			"templates/layout.html",
-			"templates/public.navbar.html",
-			"templates/index.html"}
-		privateTmplFiles := []string{
-			"templates/layout.html",
-			"templates/private.navbar.html",
-			"templates/index.html"}
-		var templates *template.Template
+		_, err := session(writer, request)
 		if err != nil {
-			templates = template.Must(template.ParseFiles(privateTmplFiles...))
+			generateHTML(writer, threads, "layout", "public.navbar", "index")
 		} else {
-			templates = template.Must(template.ParseFiles(publicTmplFiles...))
+			generateHTML(writer, threads, "layout", "private.navbar", "index")
 		}
-		templates.ExecuteTemplate(w, "layout", threads)
 	}
 }
