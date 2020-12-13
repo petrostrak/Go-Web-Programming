@@ -30,7 +30,8 @@ import (
 
 func process(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	fmt.Fprintln(w, r.Form)
+	fmt.Fprintln(w, r.Form["hello"]) //Of course, if you only want to get the value to the key post, you can use
+	//r.Form["post"], which will give you a map with one element: [456]
 }
 
 func main() {
