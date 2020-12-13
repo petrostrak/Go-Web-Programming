@@ -6,10 +6,21 @@ import (
 	"net/http"
 )
 
+// func process(w http.ResponseWriter, r *http.Request) {
+// 	r.ParseMultipartForm(1024)
+// 	fileHeader := r.MultipartForm.File["uploaded"][0]
+// 	file, err := fileHeader.Open()
+// 	if err == nil {
+// 		data, err := ioutil.ReadAll(file)
+// 		if err == nil {
+// 			fmt.Fprintln(w, string(data))
+// 		}
+// 	}
+// }
+
+// Retrieving uploaded files using FormFile
 func process(w http.ResponseWriter, r *http.Request) {
-	r.ParseMultipartForm(1024)
-	fileHeader := r.MultipartForm.File["uploaded"][0]
-	file, err := fileHeader.Open()
+	file, _, err := r.FormFile("uploaded")
 	if err == nil {
 		data, err := ioutil.ReadAll(file)
 		if err == nil {
