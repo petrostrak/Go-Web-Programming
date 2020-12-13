@@ -30,8 +30,16 @@ import (
 
 func process(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	fmt.Fprintln(w, r.Form["hello"]) //Of course, if you only want to get the value to the key post, you can use
+	fmt.Fprintln(w, r.Form["hello"])
+	fmt.Fprintln(w, "(1)", r.FormValue("hello"))
+	fmt.Fprintln(w, "(2)", r.PostFormValue("hello"))
+	fmt.Fprintln(w, "(3)", r.PostForm)
+	fmt.Fprintln(w, "(4)", r.MultipartForm)
+	//Of course, if you only want to get the value to the key post, you can use
 	//r.Form["post"], which will give you a map with one element: [456]
+
+	// r.ParseMultipartForm(1024)
+	// fmt.Fprintln(w, r.MultipartForm)
 }
 
 func main() {
@@ -41,3 +49,12 @@ func main() {
 	http.HandleFunc("/process", process)
 	server.ListenAndServe()
 }
+
+/*
+What if you need just the form key-value pairs and want to totally ignore the URL
+key-value pairs? For that you can use the PostForm field, which provides key-value
+pairs only for the form and not the URL. If you change from using r.Form to using
+r.PostForm in the code, this is what you get:
+
+map[post:[456] hello:[petros trak]]
+*/
