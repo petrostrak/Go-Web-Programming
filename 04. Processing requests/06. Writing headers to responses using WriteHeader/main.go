@@ -26,3 +26,8 @@ func main() {
 	http.HandleFunc("/writeheader", writeHeaderExample)
 	server.ListenAndServe()
 }
+
+/*
+Call the URL through cURL:
+curl -i 127.0.0.1:8080/writeheader
+*/
