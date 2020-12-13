@@ -1,0 +1,1 @@
+This is a text file to be red by the handler into a byte array.
