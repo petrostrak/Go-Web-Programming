@@ -46,8 +46,10 @@ func setCookie(w http.ResponseWriter, r *http.Request) {
 		Value:    "Golang rocks",
 		HttpOnly: true,
 	}
-	w.Header().Set("Set-Cookie", c1.String())
-	w.Header().Set("Set-cookie", c2.String())
+	// w.Header().Set("Set-Cookie", c1.String())
+	// w.Header().Set("Set-cookie", c2.String())
+	http.SetCookie(w, &c1)
+	http.SetCookie(w, &c2)
 }
 
 func main() {
@@ -57,3 +59,10 @@ func main() {
 	http.HandleFunc("/set_cookie", setCookie)
 	server.ListenAndServe()
 }
+
+/*
+Go provides a simpler shortcut to setting the cookie: using the SetCookie function
+in the net/http library.
+It doesn’t make too much of a difference, though you should take note that you need
+to pass in the cookies by reference instead.
+*/
