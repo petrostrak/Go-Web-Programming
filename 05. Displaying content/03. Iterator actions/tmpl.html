@@ -9,6 +9,10 @@
         <ul>
             {{ range .}}
                 <li>{{ . }}</li>
+            {{ else }}
+                <li>Nothin to show</li>
+                <!--In the listing the content after {{ else }} and before {{ end }} will be displayed if
+the dot (.) is nil-->
             {{ end }}
         </ul>
     </body>
