@@ -32,3 +32,15 @@ func main() {
 	fmt.Printf("Read %d bytes from file\n", bytes)
 	fmt.Println(string(read2))
 }
+
+/*
+To write a file, you first create it using the Create function in the os
+package, passing it the name of the file you want to create. It’s good practice to use
+defer to close the file so that you won’t forget.
+
+Reading a file with the File struct is similar. You need to use the Open function in
+the os package, and then use the Read method on the File struct, or any of the other
+methods to read the data. Reading data using the File struct is much more flexible
+because File has several other methods you can use to locate the correct part of the
+file you want to read from.
+*/
