@@ -1,5 +1,6 @@
 package main
 
+// go get "github.com/lib/pq"
 import (
 	"database/sql"
 	"fmt"
