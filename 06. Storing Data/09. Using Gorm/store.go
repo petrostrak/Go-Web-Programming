@@ -20,7 +20,7 @@ type Comment struct {
 	Id        int
 	Content   string
 	Author    string `sql:"not null"`
-	PostId    int    `sql:"index"`
+	PostId    int
 	CreatedAt time.Time
 }
 
