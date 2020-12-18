@@ -25,6 +25,7 @@ func init() {
 	}
 }
 
+// Gets all posts
 func Posts(limit int) (posts []Post, err error) {
 	rows, err := Db.Query("select id, content, author from posts limit $1", limit)
 	if err != nil {
