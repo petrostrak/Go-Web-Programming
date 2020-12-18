@@ -109,20 +109,28 @@ func (post *Post) Delete() (err error) {
 
 func main() {
 	post := Post{Content: "Hello World!", Author: "Petros Trak"}
-
-	fmt.Println(post)
 	post.Create()
-	fmt.Println(post)
 
+	comment := Comment{Content: "Good post!", Author: "Joe", Post: &post}
+	comment.Create()
 	readPost, _ := GetPost(post.Id)
+
 	fmt.Println(readPost)
+	fmt.Println(readPost.Comments)
+	fmt.Println(readPost.Comments[0].Post)
+	// fmt.Println(post)
+	// post.Create()
+	// fmt.Println(post)
 
-	readPost.Content = "Bonjour Monde!"
-	readPost.Author = "Giannis"
-	readPost.Update()
+	// readPost, _ := GetPost(post.Id)
+	// fmt.Println(readPost)
 
-	// posts, _ := Posts()
-	// fmt.Println(posts)
+	// readPost.Content = "Bonjour Monde!"
+	// readPost.Author = "Giannis"
+	// readPost.Update()
 
-	readPost.Delete()
+	// // posts, _ := Posts()
+	// // fmt.Println(posts)
+
+	// readPost.Delete()
 }
